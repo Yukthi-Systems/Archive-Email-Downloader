@@ -1,0 +1,30 @@
+name: Go CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.24'
+
+    - name: Install dependencies
+      run: go mod download
+
+    - name: Build Downloader
+      run: go build -v ./cmd/downloader
+
+    - name: Build Cleanup
+      run: go build -v ./cmd/cleanup
+
+    - name: Run Tests
+      run: go test -v ./...
