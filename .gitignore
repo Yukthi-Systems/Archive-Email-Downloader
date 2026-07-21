@@ -1,0 +1,7 @@
+/logs
+/storage
+.env
+sql.db
+downloader.exe
+archive-downloader.exe
+archive-downloader
